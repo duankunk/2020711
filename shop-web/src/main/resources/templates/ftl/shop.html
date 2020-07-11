@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title></title>
+
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<#include "./head.html">
+    <!-- main wrapper start -->
+          <script type="text/javascript">
+			    function addcart(id) {
+			        $.ajax({
+			            type: "post",
+			            url: "${req.contextPath}/wishcart/addwish",
+			            data: {"pid":id},
+			            success: function(date){
+			            	if(date=="200"){
+			            		alert("添加成功" );
+			                }else {
+			                    window.location.href ="http://"+window.location.host+"/login";
+			                }
+			            }
+			        });
+			    }
+            function addwish(id) {
+                $.ajax({
+    	            type: "post",
+    	            url: "${req.contextPath}/wishcart/addwish",
+    	            data: {"pid":id},
+    	            success: function(date){
+    	            	if(date=="200"){
+    	            		alert("添加成功" );
+    	                }else {
+    	                    window.location.href ="http://"+window.location.host+"/login";
+    	                }
+    	            }
+    	        });
+            }
+</script>
+    <main>
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area common-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <h1>shop</h1>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i></a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">shop</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- page main wrapper start -->
+        <div class="shop-main-wrapper section-space pb-0">
+            <div class="container">
+                <div class="row">
+                  
+                    <!-- shop main wrapper start -->
+                    <div class="col-lg-12 order-1 order-lg-2">
+                        <div class="shop-product-wrapper">
+                            <!-- shop product top wrap start -->
+                            <div class="shop-top-bar">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-7 col-md-6 order-2 order-md-1">
+                                        <div class="top-bar-left">
+                                            <div class="product-view-mode">
+                                                <a class="active" href="#" data-target="grid-view" data-toggle="tooltip" title="Grid View"><i class="fa fa-th"></i></a>
+                                                <a href="#" data-target="list-view" data-toggle="tooltip" title="List View"><i class="fa fa-list"></i></a>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <!-- shop product top wrap start -->
+
+                            <!-- product item list wrapper start -->
+                            <div class="shop-product-wrap grid-view row mbn-40">
+                            
+                            <#list allproduct as x>
+                                <!-- product single item start -->
+                                <div class="col-md-4 col-sm-6">
+                                    <!-- product grid start -->
+                                    <div class="product-item">
+                                        <figure class="product-thumb">
+                                            <a href="${req.contextPath}/productdetails/${x.id}">
+                                            	<#assign id="1"/>
+	                                            <#list x.photo?split(",") as name>
+	                                            	<#if id=="1">  
+	                                            		 <#assign id="2"/>
+		                                                <img class="pri-img" src="${name}" alt="product">
+		                                            <#else>    
+		                                                <img class="sec-img" src="${name}" alt="product">
+	                                          		</#if>
+	                                            </#list>
+                                            </a>
+                                            <div class="product-badge">
+                                                <div class="product-label new">
+                                                    <span>new</span>
+                                                </div>
+                                                <div class="product-label discount">
+                                                <span>${x.discount * 100}%</span>
+                                                </div>
+                                            </div>
+                                            <div class="button-group">
+                                                <a href="#" data-toggle="tooltip"onclick="addwish(${x.id})" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
+                                                <a href="#" data-toggle="tooltip"onclick="addcart(${x.id})" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
+                                            </div>
+                                        </figure>
+                                        <div class="product-caption">
+                                            <p class="product-name">
+                                                <a href="product-details.html">${x.name}</a>
+                                            </p>
+                                            <div class="price-box">
+                                                <span class="price-regular">${ x.price?number * x.discount }￥</span>
+                                                <span class="price-old"><del>${x.price}￥</del></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- product grid end -->
+
+                                    <!-- product list item end -->
+                                    <div class="product-list-item">
+                                        <figure class="product-thumb">
+                                            <a href="${req.contextPath}/productdetails/${x.id}">
+                                            	<#assign id1="1"/>
+	                                            	<#list x.photo?split(",") as name>
+	                                            	<#if id1=="1">  
+	                                            		 <#assign id1="2"/>
+		                                                <img class="pri-img" src="${name}" alt="product">
+		                                            <#else>    
+		                                                <img class="sec-img" src="${name}" alt="product">
+	                                          		</#if>
+	                                            </#list>
+                                            </a>
+                                            <div class="product-badge">
+                                                <div class="product-label new">
+                                                    <span>new</span>
+                                                </div>
+                                                <div class="product-label discount">
+                                                    <span>${x.discount * 100}%</span>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                        <div class="product-content-list">
+                                            <h5 class="product-name"><a href="product-details.html">Flowers daisy pink stick</a></h5>
+                                            <div class="price-box">
+                                                <span class="price-regular">${ x.price?number * x.discount }￥</span>
+                                                <span class="price-old"><del>${x.price}￥</del></span>
+                                            </div>
+                                            <p>${x.describe}
+                                            </p>
+                                            <div class="button-group-list">
+                                                <a class="btn-big" href="#" data-toggle="tooltip" title="Add to Cart"><i class="lnr lnr-cart"></i>Add to Cart</a>
+                                                <a href="#" data-toggle="tooltip" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- product list item end -->
+                                </div>
+                                <!-- product single item start -->
+							</#list>
+                            </div>
+                            <!-- product item list wrapper end -->
+
+                            <!-- start pagination area -->
+                            <div class="paginatoin-area text-center">
+                                <ul class="pagination-box">
+                                	<#if now?int==0 || now?int==1> 
+                                    	<li><a class="previous btn  disabled" href="?pager=1" ><i class="lnr lnr-chevron-left"></i></a></li>
+                                    <#else>
+                                    	<li><a class="previous btn disabled" href="?pager=${now-1}" ><i class="lnr lnr-chevron-left"></i></a></li>
+                                    </#if>
+                                    <#if count==0>
+										<li><a href="#">${1}</a></li>
+									<#else>
+										<#list 1..(count+1) as x>
+											<li><a href="?pager=${x}">${x}</a></li>
+										</#list>
+									</#if>
+									<#if now?int==(count+1)> 
+                                    <li><a class="next btn  disabled" href="?pager=${count+1}"><i class="lnr lnr-chevron-right"></i></a></li>
+                                    <#else>
+                                    	<li><a class="next btn disabled" href="?pager=${now+1}" ><i class="lnr lnr-chevron-right"></i></a></li>
+                                    </#if>
+                                    
+                                </ul>
+                            </div>
+                            <!-- end pagination area -->
+                        </div>
+                    </div>
+                    <!-- shop main wrapper end -->
+                </div>
+            </div>
+        </div>
+        <!-- page main wrapper end -->
+    </main>
+ 
+    <!-- main wrapper end -->
+<#include "./foot.html">
+</body>
+
+</html>

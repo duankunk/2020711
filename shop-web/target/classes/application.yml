@@ -1,0 +1,64 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8882/eureka/
+server:
+  port: 8661
+spring:
+  datasource:
+        name: test
+        url: jdbc:mysql://111.229.54.132:3306/test  #杩炴帴璇彞璁板s緱鏇存敼
+        username: zt
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+  application:
+    name: service-hi
+  freemarker:
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: req  #req访问request
+    check-template-location: true
+    prefix: /ftl/
+    suffix: .html  #后缀名
+    content-type: text/html
+    enabled: true
+    cache: false #缓存配置
+    template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+    charset: UTF-8 #编码格式
+  redis:
+    host: 111.229.54.132
+    port: 6379
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+#  redis:
+#    commandTimeout: 5000
+#    pool: 
+#      max-active: 8
+#      max-wait: -1
+#      max-idle: 8
+#      min-idle: 0
+#    timeout: 0
+#    cluster: 
+#      #设置key的生存时间，当key过期时，它会被自动删除；
+#      expire-seconds: 120
+#      #设置命令的执行时间，如果超过这个时间，则报错;
+#      command-timeout: 5000
+#      #设置redis集群的节点信息，其中namenode为域名解析，通过解析域名来获取相应的地址;
+#      nodes: 121.199.35.56:6379,212.64.55.141:6379,111.229.54.132:6379

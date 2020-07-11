@@ -1,0 +1,17 @@
+com\tfye\utils\ReflectionUtils.class
+com\tfye\constants\MQInterfaceType.class
+com\tfye\constants\Constants.class
+com\tfye\common\mybatis\BaseDao.class
+com\tfye\utils\MD5Util.class
+com\tfye\common\config\RedisConfig.class
+com\tfye\common\mybatis\BaseProvider.class
+com\tfye\common\api\BaseApiService.class
+com\tfye\common\entity\TestEntity.class
+com\tfye\common\entity\BaseEntity.class
+com\tfye\common\log\LogAspectServiceApi.class
+com\tfye\constants\DBTableName.class
+com\tfye\utils\DateUtils.class
+com\tfye\constants\BaseApiConstants.class
+com\tfye\utils\ResultUtils.class
+com\tfye\common\redis\BaseRedisService.class
+com\tfye\web\CookieUtil.class

@@ -1,0 +1,20 @@
+spring:
+  redis:
+    commandTimeout: 5000
+    pool: 
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
+    cluster: 
+      #设置key的生存时间，当key过期时，它会被自动删除；
+      expire-seconds: 120
+      #设置命令的执行时间，如果超过这个时间，则报错;
+      command-timeout: 5000
+      #设置redis集群的节点信息，其中namenode为域名解析，通过解析域名来获取相应的地址;
+      nodes: 121.199.35.56:6379,212.64.55.141:6379,111.229.54.132:6379
+
+   
+  
+  

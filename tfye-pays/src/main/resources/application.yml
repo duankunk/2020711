@@ -1,0 +1,45 @@
+server:
+  port: 8755
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8882/eureka/
+spring:
+  application:
+    name: Order
+  redis:
+    host: 111.229.54.132
+    port: 6379
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+  datasource:
+        name: test
+        url: jdbc:mysql://111.229.54.132/flowershop
+        #杩炴帴璇彞璁板緱鏇存敼url: jdbc: mysql:/ /111.229.54.123: 3306/flowershop   127.0.0.1=localhost=192.168.0.104 本机
+        SSID: FAST_0074
+        username: tzr
+        password: 123456
+        # 浣跨敤druid鏁版嵁婧�
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatesments: 20
+mybatis:
+  #瀵瑰簲瀹炰綋绫昏矾寰�
+  type-aliases-package: com.tfye.entity
+  #瀵瑰簲mapper鏄犲皠鏂囦欢璺緞
+  mapper-locations: classpath:mapper/*.xml

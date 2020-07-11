@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Home</title>
+    
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="${req.contextPath}/assets/layer/layer.js"></script> 
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<#include "./head.html">
+    <!-- main wrapper start -->
+     
+    
+    <main>
+       <div class="container" >
+		   <div class="col-12">
+				<div class="container col-10 offset-1">
+					<div class="col-10 ">
+						<div class="row mb-2">
+							<div class=" m-auto" style="width: 76px; height: 76px; ">
+								<img src="${req.contextPath}/${user.uphoto!'assets/img/head.jpg'}" class="head1" >
+							</div>
+						</div>
+						<hr >
+						<div class="row">
+							<div class="col-12">
+								<center>
+									 <font size="5" color="">${user.uname}</font>
+								</center>
+							</div>
+						</div>
+						<hr >
+						<div class="row">
+							<div class="col-12">
+								<div class="list-group text-center text-md-left">
+									<a href="${req.contextPath}/wishcart" class="list-group-item list-group-item-action text-center">  &nbsp;心愿单</a>
+									<a href="${req.contextPath}/shopCart" class="list-group-item list-group-item-action text-center">&nbsp;购物车</a>
+									<a href="${req.contextPath}/"  class="list-group-item list-group-item-action text-center">&nbsp;修改头像</a>
+								 	<a href="#" onclick="aaddress()" class="list-group-item list-group-item-action text-center"> &nbsp;添加地址</a>
+								  </div>
+							</div>
+						</div>
+						<hr >
+						<div class="panel panel-default text-center">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									个人资料
+								</h4>
+							</div>
+							<hr >
+							<div class="panel-body">
+								<ul class="list-group">
+									<li class="list-group-item">
+										<h5 class="mb-3">fff <small>(152)</small> </h5>
+										<hr >
+										<font size="" color="" class="">邮箱状态：${user.uemail!'尚未验证'}</font>
+										<br class="d-block d-sm-none m-0">
+										<font size="" color="" class="ml-4">电话状态：${user.uphone!'尚未验证'}</font><br>
+										<h1></h1>
+										<hr >
+									</li>
+									<li class="list-group-item">
+										<h5 class="mb-3">活跃状态 </h5>
+										<hr >
+										<font size="" color="" class="">注册时间：2016-11-12 22:20</font>
+										<br class="d-block d-sm-none m-0">
+										<font size="" color="" class="ml-4">最后访问：暂未显示</font><br>
+										<h1></h1>
+										<hr >
+										<font size="" color="">注册 IP：暂未显示 </font>
+										<br class="d-block d-sm-none m-0">
+										<font size="" color="" class="ml-4">上次访问ip：暂未显示</font>
+										<h1></h1>
+										<hr >
+										<font size="" color="">上次活动时间：暂未显示 </font>
+										<br class="d-block d-sm-none m-0">
+										<font size="" color="" class="ml-4">上次访问：暂未显示</font>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+		   </div>
+       </div>
+    </main>
+  
+ <script type="text/javascript">
+ function aaddress(){
+	    layer.open({
+	      type: 2,
+	      title: '地址',
+	      maxmin: true,
+	      shadeClose: true, //点击遮罩关闭层
+	      area : ['500px' , '700px'],
+	      content: '${req.contextPath}/account/address'
+	    });
+}
+</script>
+    <!-- main wrapper end -->
+<#include "./foot.html">
+</body>
+
+</html>

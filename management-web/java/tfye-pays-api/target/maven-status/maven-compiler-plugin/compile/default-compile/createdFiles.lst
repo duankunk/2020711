@@ -1,0 +1,10 @@
+com\tfye\entity\Order.class
+com\tfye\entity\UserEntity.class
+com\tfye\api\service\ShoppingService.class
+com\tfye\api\service\UserService.class
+com\tfye\api\service\OrderService.class
+com\tfye\entity\Shopping.class
+com\tfye\api\service\HelloService.class
+com\tfye\entity\Lihao.class
+com\tfye\entity\Wishlist.class
+com\tfye\api\service\WishlistService.class

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script src="${req.contextPath}/assets/layer/layer.js"></script> 
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<h3>添加商品</h3>
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center" id="">
+					<label >图片1</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="phone1"  value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >图片2</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="phone2" value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >名字</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="name"  value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >价格</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="price"  value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >折扣</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="dis"   value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >描述</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="scri"   value="" />
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >c</label>
+				</div>
+			</div>
+			<div class="row">
+				<#list allcolor as x>
+					<div class="col-12 text-center">
+						<#if x_index%3==0>
+							${x.color}:<input type="checkbox" name="color" id="" value="${x.id}" /><hr>
+						<#else>
+							${x.color}:<input type="checkbox" name="color" id="" value="${x.id}" />
+						</#if>
+					</div>
+				</#list>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<label >大小</label>
+				</div>
+			</div>
+			<div class="row">
+				<#list allsize as x>
+					<div class="col-12 text-center">
+						<#if x_index%3==0>
+							${x.size}:<input type="checkbox" name="size" id="" value="${x.id}" /><hr>
+						<#else>
+							${x.size}:<input type="checkbox" name="size" id="" value="${x.id}" />
+						</#if>
+					</div>
+				</#list>
+			</div>
+				<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<button style="width: 100%" onclick="addpro()">添加</button>
+				</div>
+			</div>
+				<hr >
+			<script type="text/javascript">
+			function addpro(){
+					var phone1=$('#phone1').val();
+					var phone2=$('#phone2').val();
+					var phone = phone1+","+phone2
+					var name=$('#name').val();
+					var price=$('#price').val();
+					var dis=$('#dis').val();
+					var scri=$('#scri').val();
+					var myLocalDate=$('#myLocalDate').val();
+					var size="";
+					var color="";
+					 $('input[name="size"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+						
+						 size=size + $(this).val()+",";//将选中的值添加到数组chk_value中
+				    });
+					 $('input[name="color"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+							
+						 color=color + $(this).val()+",";//将选中的值添加到数组chk_value中
+				    });
+					size = size.substr(0, size.length - 1);  
+					color = color.substr(0, color.length - 1);
+					$.ajax({
+			            type: "post",
+			            url: "${req.contextPath}/add",
+			            data: {"phone":phone,"name":name,"price":price,"dis":dis,"scri":scri,"myLocalDate":myLocalDate,"size":size,"color":color},
+			            success: function(date){
+			                if(date=="200"){
+			                	window.parent.location.reload();
+			                	parent.layer.close(index);
+			                }else {
+			                    alert("请重试");
+			                }
+			            }
+			        });
+					
+			}
+			</script>
+		</div>
+	</body>
+</html>

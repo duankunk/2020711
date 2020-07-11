@@ -1,0 +1,49 @@
+server:
+  port: 8750
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://111.229.54.132:8882/eureka/
+spring:
+  application:
+    name: user
+#    spring:spring.redis.cluster.nodes=
+  redis:
+    commandTimeout: 5000
+    pool: 
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
+    cluster: 
+      expire-seconds: 120
+      command-timeout: 5000
+      nodes: 121.199.35.56:6379,212.64.55.141:6379,111.229.54.132:6379
+  datasource:
+        name: test
+        url: jdbc:mysql://121.199.35.56:3306/test  #杩炴帴璇彞璁板s緱鏇存敼
+        username: zt
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+  activemq:
+    broker-url: tcp://212.64.55.141:61616
+    in-memory: true
+    pool:
+      enabled: false
+messages:
+   queue: mail_queue

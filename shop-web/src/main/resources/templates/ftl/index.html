@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Home</title>
+
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<#include "./head.html">
+    <!-- main wrapper start -->
+<main>
+<script type="text/javascript">
+    function addcart(id) {
+        $.ajax({
+            type: "post",
+            url: "${req.contextPath}/wishcart/addwish",
+            data: {"pid":id},
+            success: function(date){
+            	if(date=="200"){
+            		alert("添加成功" );
+                }else {
+                    window.location.href ="http://"+window.location.host+"/login";
+                }
+            }
+        });
+    }
+            function addwish(id) {
+                $.ajax({
+    	            type: "post",
+    	            url: "${req.contextPath}/wishcart/addwish",
+    	            data: {"pid":id},
+    	            success: function(date){
+    	            	if(date=="200"){
+    	            		alert("添加成功" );
+    	                }else {
+    	                    window.location.href ="http://"+window.location.host+"/login";
+    	                }
+    	            }
+    	        });
+            }
+</script>
+        <!-- slider area start -->
+        <section class="slider-area">
+            <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
+                <!-- single slider item start -->
+                <div class="hero-single-slide ">
+                    <div class="hero-slider-item bg-img" data-bg="${req.contextPath}/assets/img/slider/home1-slide1.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hero-slider-content slide-1">
+                                        <span style="color: black;">情人节的礼物</span>
+                                        <h1>清新你的心灵</h1>，
+                                        <h2>& 感受爱</h2>
+                                        <a href="${req.contextPath}/shop" class="btn-hero">前往购买</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item end -->
+
+                <!-- single slider item start -->
+                <div class="hero-single-slide">
+                    <div class="hero-slider-item bg-img" data-bg="${req.contextPath}/assets/img/slider/home1-slide2.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hero-slider-content slide-2">
+                                        <span style="color: black;">情人节的礼物</span>
+                                        <h1>清新你的心灵</h1>，
+                                        <h2>& 感受爱</h2>
+                                        <a href="${req.contextPath}/shop" class="btn-hero">前往购买</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item start -->
+            </div>
+        </section>
+        <!-- slider area end -->
+
+        <!-- banner statistics start -->
+        <section class="banner-statistics section-space">
+            <div class="container">
+                <div class="row mbn-30">
+                    <!-- start store item -->
+                    <div class="col-md-4">
+                        <div class="banner-item mb-30">
+                            <figure class="banner-thumb">
+                                <a href="${req.contextPath}/shop">
+                                    <img src="${req.contextPath}/assets/img/banner/img1-top-floda1.jpg" alt="">
+                                </a>
+                                <figcaption class="banner-content">
+                                    <h2 class="text1">Top friday</h2>
+                                    <h2 class="text2">Yellow Gold</h2>
+                                    <a class="store-link" href="${req.contextPath}/shop">立刻前往</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- start store item -->
+
+                    <!-- start store item -->
+                    <div class="col-md-4">
+                        <div class="banner-item mb-30">
+                            <figure class="banner-thumb">
+                                <a href="${req.contextPath}/shop">
+                                    <img src="${req.contextPath}/assets/img/banner/img1-top-floda2.jpg" alt="">
+                                </a>
+                                <figcaption class="banner-content text-center">
+                                    <h2 class="text1">Black friday</h2>
+                                    <h2 class="text2">Orchid stick</h2>
+                                    <a class="store-link" href="${req.contextPath}/shop">立刻前往</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- start store item -->
+
+                    <!-- start store item -->
+                    <div class="col-md-4">
+                        <div class="banner-item mb-30">
+                            <figure class="banner-thumb">
+                                <a href="${req.contextPath}/shop">
+                                    <img src="${req.contextPath}/assets/img/banner/img1-top-floda3.jpg" alt="">
+                                </a>
+                                <figcaption class="banner-content">
+                                    <h2 class="text1">10% off</h2>
+                                    <h2 class="text2">tulip flower</h2>
+                                    <a class="store-link" href="${req.contextPath}/shop">立刻前往</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- start store item -->
+                </div>
+            </div>
+        </section>
+        <!-- banner statistics end -->
+
+        <!-- service policy start -->
+        <section class="service-policy-area section-space p-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <!-- start policy single item -->
+                        <div class="service-policy-item">
+                            <div class="icons">
+                                <img src="${req.contextPath}/assets/img/icon/free_shipping.png" alt="">
+                            </div>
+                            <div class="policy-terms">
+                                <h5>免费送货</h5>
+                                <p>Free shipping all order</p>
+                            </div>
+                        </div>
+                        <!-- end policy single item -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <!-- start policy single item -->
+                        <div class="service-policy-item">
+                            <div class="icons">
+                                <img src="${req.contextPath}/assets/img/icon/support247.png" alt="">
+                            </div>
+                            <div class="policy-terms">
+                                <h5>支持    24/7</h5>
+                                <p>Support 24 hours a day</p>
+                            </div>
+                        </div>
+                        <!-- end policy single item -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <!-- start policy single item -->
+                        <div class="service-policy-item">
+                            <div class="icons">
+                                <img src="${req.contextPath}/assets/img/icon/money_back.png" alt="">
+                            </div>
+                            <div class="policy-terms">
+                                <h5>可退款</h5>
+                                <p>30 days for free return</p>
+                            </div>
+                        </div>
+                        <!-- end policy single item -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <!-- start policy single item -->
+                        <div class="service-policy-item">
+                            <div class="icons">
+                                <img src="${req.contextPath}/assets/img/icon/promotions.png" alt="">
+                            </div>
+                            <div class="policy-terms">
+                                <h5>订单的折扣</h5>
+                                <p>On every order over $15</p>
+                            </div>
+                        </div>
+                        <!-- end policy single item -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- service policy end -->
+
+        <!-- our product area start -->
+        <section class="our-product section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2>最新商品</h2>
+                            <p>每日实时更新</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mtn-40">
+                
+                	<#list proNewEight as x >
+	                    <!-- product single item start -->
+	                    <div class="col-lg-3 col-md-4 col-sm-6">
+	                        <div class="product-item mt-40">
+	                            <figure class="product-thumb">
+	                                <a href="${req.contextPath}/productdetails/${x.id}">
+	                                      <#assign id="1"/>
+                                          <#list x.photo?split(",") as name>
+                                          <#if id=="1">  
+                                          		<#assign id="2"/>
+                                               <img class="pri-img" src="${name}" alt="product">
+                                           <#else>    
+                                               <img class="sec-img" src="${name}" alt="product">
+                                        	</#if>
+                                          </#list>
+	                                </a>
+	                                <div class="product-badge">
+	                                    <div class="product-label new">
+	                                        <span>new</span>
+	                                    </div>
+	                                    <div class="product-label discount">
+	                                        <span>${x.discount * 100}%</span>
+	                                    </div>
+	                                </div>
+	                                <div class="button-group">
+	                                    <a href="###" onclick="addwish(${x.id})" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
+	                                    <a href="###" data-toggle="tooltip" onclick="addcart(${x.id})" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
+	                                </div>
+	                            </figure>
+	                            
+	                            <div class="product-caption">
+	                                <p class="product-name">
+	                                    <a href="product-details.html">${x.name}</a>
+	                                </p>
+	                                <div class="price-box">
+	                                    <span class="price-regular">${ x.price?number * x.discount }￥</span>
+	                                    <span class="price-old"><del>${x.price}￥</del></span>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- product single item end -->
+					</#list>
+						
+                    <div class="col-12">
+                        <div class="view-more-btn">
+                            <a class="btn-hero btn-load-more" href="${req.contextPath}/shop">查看更多商品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- our product area end -->
+
+        <!-- banner statistics start -->
+        <section class="banner-statistics-right">
+            <div class="container">
+                <div class="row">
+                    <!-- start banner item start -->
+                    <div class="col-md-6">
+                        <div class="banner-item banner-border">
+                            <figure class="banner-thumb">
+                                <a href="#">
+                                    <img src="${req.contextPath}/assets/img/banner/banner-1.jpg" alt="">
+                                </a>
+                                <figcaption class="banner-content banner-content-right">
+                                    <h2 class="text1">for you</h2>
+                                    <h2 class="text2">Tulip Flower</h2>
+                                    <a class="store-link" href="${req.contextPath}/shop">前往购买</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- start banner item end -->
+
+                    <!-- start banner item start -->
+                    <div class="col-md-6">
+                        <div class="banner-item banner-border">
+                            <figure class="banner-thumb">
+                                <a href="#">
+                                    <img src="${req.contextPath}/assets/img/banner/banner-2.jpg" alt="">
+                                </a>
+                                <figcaption class="banner-content banner-content-right">
+                                    <h2 class="text1">for you</h2>
+                                    <h2 class="text2">Flower & Box</h2>
+                                    <a class="store-link" href="${req.contextPath}/shop">前往购买</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- start banner item end -->
+                </div>
+            </div>
+        </section>
+        <!-- banner statistics end -->
+
+        <!-- trending product area start -->
+        <section class="top-sellers section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2>最高销售</h2>
+                            <p>每日实时统计</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-carousel--4 slick-row-15 slick-sm-row-10 slick-arrow-style">
+                        <#list proTopSix as x >
+                            <!-- product single item start -->
+                            <div class="product-item">
+                                <figure class="product-thumb">
+                                    <a href="${req.contextPath}/productdetails/${x.id}">
+                                        		<#assign id="1"/>
+	                                            <#list x.photo?split(",") as name>
+	                                            	<#if id=="1">  
+	                                            		 <#assign id="2"/>
+		                                                <img class="pri-img" src="${name}" alt="product">
+		                                            <#else>    
+		                                                <img class="sec-img" src="${name}" alt="product">
+	                                          		</#if>
+	                                            </#list>
+                                    </a>
+                                    <div class="product-badge">
+                                        <div class="product-label new">
+                                            <span>new</span>
+                                        </div>
+                                    </div>
+                                    <div class="button-group">
+                                        <a href="###" data-toggle="tooltip" onclick="addwish(${x.id})" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
+                                        <a href="###" data-toggle="tooltip"onclick="addcart(${x.id})"  data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
+                                    </div>
+                                </figure>
+                                <div class="product-caption">
+                                    <p class="product-name">
+                                        <a href="product-details.html">${x.name}</a>
+                                    </p>
+                                    <div class="price-box">
+                                        <span class="price-regular">${ x.price?number * x.discount }￥</span>
+                                        <span class="price-old"><del>${x.price}￥</del></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product single item end -->
+						</#list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- trending product area end -->
+
+        <!-- Instagram Feed Area Start -->
+        <div class="instagram-feed-area">
+            <div class="instagram-feed-thumb">
+                <div id="instafeed" class="instagram-carousel" data-userid="6666969077" data-accesstoken="6666969077.1677ed0.d325f406d94c4dfab939137c5c2cc6c2">
+                </div>
+            </div>
+        </div>
+        <!-- Instagram Feed Area End -->
+
+    </main>
+    <!-- main wrapper end -->
+    
+ 
+<#include "./foot.html">
+
+</body>
+
+</html>

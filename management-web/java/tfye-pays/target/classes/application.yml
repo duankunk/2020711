@@ -1,0 +1,52 @@
+server:
+  port: 8755
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://111.229.54.132:8882/eureka/
+spring:
+  application:
+    name: Order
+  redis:
+    commandTimeout: 5000
+    pool: 
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
+    cluster: 
+      #璁剧疆key鐨勭敓瀛樻椂闂达紝褰搆ey杩囨湡鏃讹紝瀹冧細琚嚜鍔ㄥ垹闄わ紱
+      expire-seconds: 120
+      #璁剧疆鍛戒护鐨勬墽琛屾椂闂达紝濡傛灉瓒呰繃杩欎釜鏃堕棿锛屽垯鎶ラ敊;
+      command-timeout: 5000
+      #璁剧疆redis闆嗙兢鐨勮妭鐐逛俊鎭紝鍏朵腑namenode涓哄煙鍚嶈В鏋愶紝閫氳繃瑙ｆ瀽鍩熷悕鏉ヨ幏鍙栫浉搴旂殑鍦板潃;
+      nodes: 121.199.35.56:6379,212.64.55.141:6379,111.229.54.132:6379
+  datasource:
+        name: test
+        url: jdbc:mysql://111.229.54.132/flowershop
+        #杩炴帴璇彞璁板緱鏇存敼url: jdbc: mysql:/ /111.229.54.123: 3306/flowershop   127.0.0.1=localhost=192.168.0.104 本机
+        SSID: FAST_0074
+        username: tzr
+        password: 123456
+        # 浣跨敤druid鏁版嵁婧�
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatesments: 20
+mybatis:
+  #瀵瑰簲瀹炰綋绫昏矾寰�
+  type-aliases-package: com.tfye.entity
+  #瀵瑰簲mapper鏄犲皠鏂囦欢璺緞
+  mapper-locations: classpath:mapper/*.xml

@@ -1,0 +1,73 @@
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <title>添加地址</title>
+		<link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+    	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script src="${req.contextPath}/assets/layer/layer.js"></script> 
+		<script src="${req.contextPath}/assets/js/jquery.provincesCity.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${req.contextPath}/assets/js/provincesData.js" type="text/javascript" charset="utf-8"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container ">
+			<div class="col-10 offset-1">
+				<div class="row  mb-5">
+					<div class="col-12">
+						<font size="5" class="">地址添加</font>
+					</div>
+				</div>
+				<div class="row mb-3 ">
+					<div class="col-6 m-0">
+						姓名:<p></p><input type="text" class="form-control " id="naem" value="" />
+					</div>
+					<div class="col-6 m-0">
+						电话:<p></p><input type="text" class="form-control" id="iphone" value="" />
+					</div>
+				</div>
+				<div class="row" id="province">
+					
+				</div>
+				<div class="row mt-5">
+					详细地址:<p></p>
+					<input type="text" class="form-control " id="infor" value="" />
+				</div>
+				<div class="row mt-5">
+					<div class="col-12  text-center">
+						<button type="button" id="addaddress" class="btn btn-outline-secondary w-25">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*调用插件*/
+        $(function(){
+            $("#province").ProvinceCity();
+        });
+
+        $('#addaddress').bind('click', function() {
+            var naem = $("#naem").val();
+            var iphone = $("#iphone").val();
+            var Province = $("#Province").val();
+            var city = $("#city").val();
+            var area = $("#area").val();
+            var infor = $("#infor").val();
+            $.ajax({
+                type: "post",
+                url: "${req.contextPath}/account/addAddressDate",
+                data: { "recipient": naem, "iphon": iphone, "province": Province, "city": city, "area": area, "detailed": infor},
+                success: function (date) {
+                    if (date == "200") {
+                        window.parent.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                        layer.msg(date);
+                    } else {
+                        layer.msg(date);
+                    }
+                }
+            })
+        })
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+server:
+  port: 8763
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://111.229.54.132:8882/eureka/
+spring:
+  redis:
+      commandTimeout: 5000
+      pool: 
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+      timeout: 0
+      cluster: 
+        expire-seconds: 120
+        command-timeout: 5000
+        nodes: 121.199.35.56:6379,212.64.55.141:6379,111.229.54.132:6379
+  application:
+    name: message
+  activemq: 
+    broker-url: tcp://212.64.55.141:61616
+    in-memory: true
+    pool:
+      enabled: false
+  mail:
+  #    host: smtp.qq.com
+  #    username: 3532749049@qq.com
+  #    password: bnvtcpkaujnkcjaa 
+      password: ZDNRCEJAXJLSRLJK
+      username: wdzfwa@163.com
+      host: smtp.163.com
+      default-encoding: UTF-8
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+              required: true
+   

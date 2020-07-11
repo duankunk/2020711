@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Home</title>
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"/>
+<#include "./head.html">
+    <!-- main wrapper start -->
+    <main>
+        <div class="container " >
+        			<div class="row ">
+        				<div class="col-8 mx-auto" style="border: #ADB5BD 1px solid;">
+										<hr>
+        								<h5 class="text-center">注册</h5><p>
+        								<label class="text-center col-12">电话或邮箱</label>
+        								<div id="accordion">
+        								  <div class="card">
+        											<a class="collapsed card-link" data-toggle="collapse" href="#collapseOne">
+        												  <div class="text-center m-2">
+        													<label for="usr" class="text-muted"><i class="zi zi_mobile"></i>&nbsp;&nbsp;电话注册(<small>请点击</small>)</label>
+        												  </div>
+        											</a>
+        								    <div id="collapseOne" class="collapse" data-parent="#accordion">
+        								      <div class="card-body">
+        								        <input placeholder="电话"type="text" class="form-control btn border" id="iphone"><hr>
+        								  		<button type="button" id="sendcode" class="btn btn-outline-secondary col-12">发送验证码</button>
+        								      </div>
+        								    </div>
+        								  </div>
+        								  
+        								  <div class="card">
+        										<a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        											  <div class="text-center m-2">
+        												<label for="usr" class="text-muted"><i class="zi zi_inbox"></i>&nbsp;&nbsp;邮箱注册(<small>请点击</small>)</label>
+        											  </div>
+        										</a>
+        								    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+        								      <div class="card-body">
+        								        <input placeholder="邮箱"type="text" class="form-control btn border" id="email"><hr>
+        										<button type="button" id="sendEmailCode" class="btn btn-outline-secondary col-12">发送验证码</button>
+        								      </div>
+        								    </div>
+        								  </div>
+        								</div>
+        								<label for="usr">验证码 ：</label>	
+        								<input placeholder="验证码"type="text" class="form-control btn col-12 border" id="validation">
+        								<label for="usr">用户名 ：</label>	
+        								<input placeholder="用户名"type="text" class="form-control btn col-12 border" id="usr">
+        								<label for="usr">密码 ：</label>
+        								<input placeholder="password"type="password" class="form-control btn col-12 border" id="password">
+        								<label for="usr">重复密码 ：</label>
+        								<input placeholder="重复密码"type="password" class="form-control btn col-12 border" id="password1">
+        								<button type="button" id="resubmit" class="btn btn-outline-secondary col-12 mt-4 mb-4">提交</button>
+        				</div>
+        			</div>
+        		</div>
+    </main>
+    <!-- main wrapper end -->
+    
+
+<script type="text/javascript">
+    $('#resubmit').bind('click', function(){
+        var passwordreg=/^(\w){6,18}$/;
+        var emailreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        var iphonereg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        var name=$('#usr').val();
+        var password=$('#password').val();
+        var password1=$('#password1').val();
+        var email=$('#email').val();
+        var code=$('#validation').val();
+        var iphone=$('#iphone').val();
+        if( (email==""||!emailreg.test(email)) ) {
+				if ( iphone==""||!iphonereg.test(iphone) ) {
+						alert('请输入一个正确电话或者邮箱');
+				 }else if (code==""||code.length!=6){
+						if (code=="") {
+							alert('验证码不能为空');
+						}else {
+							alert('请输入正确的验证码');
+						}
+				}else if(name=="" || name.length<4 || name>12){
+					if (name=="") {
+						alert('用户不能为空');
+					} else{
+						alert('用户只能是4-11位');
+					}
+				}else if (password=="" || !passwordreg.test(password)||password!=password1 ){
+					if (password=="") {
+						alert('密码不能为空');
+					}else if(password!=password1){
+						alert('密码不一样 ');
+					}else {
+						alert('只能输入6-18个字母、数字、下划线 ');
+					}
+				}else {
+                    $.ajax({
+                        type: "post",
+                        url: "registerUser",
+                        data: {"note":iphone,"name":name,"password":password,"code":code},
+                        success: function(date){
+                            alert(date);
+                        }
+                    });
+				}
+        }else if (code==""||code.length!=6){
+            if (code=="") {
+                alert('验证码不能为空');
+            }else {
+                alert('请输入正确的验证码');
+            }
+        }else if(name=="" || name.length<4 || name>12){
+            if (name=="") {
+                alert('用户不能为空');
+            } else{
+                alert('用户只能是4-11位');
+            }
+        }else if (password=="" || !passwordreg.test(password)||password!=password1 ){
+            if (password=="") {
+                alert('密码不能为空');
+            }else if(password!=password1){
+                alert('密码不一样 ');
+            }else {
+                alert('只能输入6-18个字母、数字、下划线 ');
+			}
+        }else {
+                $.ajax({
+                    type: "post",
+                    url: "registerUser",
+                    data: {"note":email,"name":name,"password":password,"code":code},
+                    success: function(date){
+                    	if(date=="注册成功"){
+                    		window.location.href ="http://"+window.location.host+"/login";
+                    	}else{
+                            alert(date);
+                    	}
+                    }
+                });
+		}
+    });
+    // 发送电话验证码
+    $('#sendIphoneCode').bind('click', function(){
+        var iphonereg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        var iphone=$('#iphone').val();
+        if( (iphone==""||!iphonereg.test(iphone)) ) {
+            if ( iphone=="" ) {
+                alert('验证码不能为空');
+            }else {
+                alert('请输入正确的邮箱');
+            }
+
+        }
+        $.ajax({
+            type: "post",
+			url: "sendIphoneCode",
+            data: {"iphone":iphone,},
+			success: function(date){
+                alert(date);
+            }
+
+        });
+
+	});
+    // 发送邮箱验证码
+    $('#sendEmailCode').bind('click', function(){
+    	var emailreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        var email=$('#email').val();
+        if( (email==""||!emailreg.test(email)) ) {
+            if ( email=="" ) {
+                alert('验证码不能为空');
+            }else {
+                alert('请输入正确的邮箱');
+            }
+
+        }
+        $.ajax({
+            type: "post",
+            url: "sendEmailCode",
+            data: {"email":email,},
+            success: function(date){
+                alert(date);
+            }
+
+        });
+    })
+</script>
+<#include "./foot.html">
+</body>
+
+</html>

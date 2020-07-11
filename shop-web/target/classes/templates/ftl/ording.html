@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Home</title>
+
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<#include "./head.html">
+
+    <!-- main wrapper start -->
+    <main>
+        <div class="container col-10 offset-left-2">
+        	<div class="row">
+        			<div class="col-12 col-xl-7 ">
+        					<table class="table table-hover">
+        					    <thead>
+        					      <tr>
+        					        <th><font size="5" class="mb-3 m-0 p-0">地址信息</font></th>
+        					        <th>选择</th>
+        					      </tr>
+        					    </thead>
+        					    <tbody>
+        					      <tr>
+        					        <td>
+        								<div id="" class="mb-3 row ml-2">
+        									<div id="">
+        										姓名：段坤
+											</div>
+        									<div id="">
+        										电话：15528013182
+        									</div>
+        								</div>
+        								<div id="" class="mb-3 row ml-2">
+        									<div id="">
+        										省份：四川省
+        									</div>
+        									<div id="">
+        										市：遂宁市
+        									</div>
+        									<div id="">
+        										区：船山区
+        									</div>
+        								</div>
+										<div id="" class="mb-3 row ml-2">
+											详细地址：桥东村人里镇大桥旁asdafdfsgsfg
+										</div>
+        							</td>
+        					        <td><label><input type="radio" name="optradio"></label></td>
+        					      </tr>
+        					    </tbody>
+        						<tfoot>
+        							<tr >
+        								<td colspan="2"  class="text-center"><button type="button" id="addaddress" class="btn btn-outline-secondary w-25">添加更多</button></td>
+        							</tr>
+        						</tfoot>
+        					</table>
+        			</div>
+        			<div class="col-12 col-xl-5 " style="border: 2px red solid;">
+        				<!-- 订单信息 -->
+        				<div class="m-3">
+        					<font size="5" >订单信息</font>
+        					<table class="table table-hover mt-3">
+        					    <thead>
+        					      <tr>
+        					        <th>商品</th>
+        					        <th>合价</th>
+        					      </tr>
+        					    </thead>
+        					    <tbody>
+        					      <tr>
+        					        <td>
+        								<div class="">
+        									<img src="img/1.jpg" class="" style="width: 40px;height: 52px;">
+        									 <small>顺口味 无尘豆腐猫砂6L 快速除臭结团 × 1</small>
+        								</div>
+        								<div class="">
+        									<small>口味:绿茶味</small>
+        								</div>
+        							</td>
+        					        <td>￥55</td>
+        					      </tr>
+        					      <tr>
+        					        <td>
+        								<div class="">
+        									<img src="img/1.jpg" class="" style="width: 40px;height: 52px;">
+        									 <small>顺口味 无尘豆腐猫砂6L 快速除臭结团 × 1</small>
+        								</div>
+        								<div class="">
+        									<small>口味:绿茶味</small>
+        								</div>
+        							</td>
+        					        <td>￥55</td>
+        					      </tr>
+        					    </tbody>
+        						<tfoot>
+        							<tr>
+        								<td>购物车小计</td>
+        								<td>¥58.00</td>
+        							</tr>
+        							<tr>
+        								<td>运费</td>
+        								<td>¥50.00</td>
+        							</tr>
+        							<tr>
+        								<td>订单总计</td>
+        								<td>¥108.00</td>
+        							</tr>
+        						</tfoot>
+        					</table>
+        				</div>
+        				<!-- 购买选择 -->
+        				<div class="m-3">
+        					<!-- <label><input type="radio" name="optradio1">银行汇款（线下）</label><br><!-- 
+        					<label><input type="radio" name="optradio1">支付宝</label><br>
+        					<label><input type="radio" name="optradio1">微信支付</label><br> --> 
+        					<div id="accordion">
+        					    <div class="card">
+        					      <div class="card-header">
+        							 <label><input type="radio" data-toggle="collapse" href="#collapseOne" name="optradio1">银行汇款（线下）</label><br>
+        					      </div>
+        					      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+        					        <div class="card-body">
+        					          直接付款到我们的银行账户。请使用订单号作为付款名目。我们会在资金到账后配送订单。
+        					        </div>
+        					      </div>
+        					    </div>
+        					    <div class="card">
+        					      <div class="card-header">
+        					        <label><input type="radio" name="optradio1" data-toggle="collapse" href="#collapseTwo">支付宝</label><br>
+        					      </div>
+        					      <div id="collapseTwo" class="collapse" data-parent="#accordion">
+        					        <div class="card-body">
+        					          使用支付宝付款，如果您没有支付宝账户，也可通过借记卡或信用卡付款。
+        					        </div>
+        					      </div>
+        					    </div>
+        					    <div class="card">
+        					      <div class="card-header">
+        					        <label><input type="radio"data-toggle="collapse" href="#collapseThree" name="optradio1">微信支付</label><br>
+        					      </div>
+        					      <div id="collapseThree" class="collapse" data-parent="#accordion">
+        					        <div class="card-body">
+        					          通过微信扫码支付
+        					        </div>
+        					      </div>
+        					    </div>
+        					</div>
+        					
+        				</div>
+        				<!-- 按钮 -->
+        				<div class="m-3 text-center">
+        					
+        					<button type="button" class="btn btn-outline-secondary w-25">前往支付</button>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    </main>
+    <!-- main wrapper end -->
+<#include "./foot.html">
+</body>
+
+</html>

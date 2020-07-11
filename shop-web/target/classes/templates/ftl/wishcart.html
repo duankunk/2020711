@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Home</title>
+
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="${req.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Google fonts include -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900%7CYesteryear" rel="stylesheet">
+
+    <!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="/oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<#include "./head.html">
+    <!-- main wrapper start -->
+    <main>
+      <div class="container " >
+      	<div class="row">
+      		<div class="col-10 offset-1">
+      			<table class="table table-hover">
+      				<thead>
+      			      <tr>
+      			      	<th>选择</th>
+      			        <th>商品</th>
+      			        <th class="d-none d-md-table-cell" >备注</th>
+      			        <th>价格</th>
+      			        <th>数量</th>
+      					<th class="d-none d-md-table-cell">合计</th>
+      					<th class="d-none d-md-table-cell">操作</th>
+      			      </tr>
+      			    </thead>
+      			    <tbody>
+      			    
+      			     <#list wishAll as x>
+      			     <tr id="${x.id}tr">
+      			      <td  >
+							<div style="width: 28px;height: 30px;"></div>
+      						 <input type="checkbox" checked onmouseup="ckebox('${x.id}')"  id="${x.id}checkbox" >
+      					</td>
+      			     
+      			        <td>
+							<div style="width: 28px;height: 20px;" class="d-none d-md-table-cell"></div>
+      						<div class=" float-md-left mr-3 ">
+      						 <#assign id="1"/>
+                                          <#list proAll[x_index].photo?split(",") as name>
+	                                          <#if id=="1">  
+	                                          		<#assign id="2"/>
+	                                               &nbsp;&nbsp;&nbsp;<img src="${name}" style="width: 50px;height: 50px"/>
+	                                           </#if>
+                                          </#list>
+      						</div>
+      					</td>
+      					<td class="d-none d-md-table-cell">
+							<div style="width: 28px;height: 10px;"></div>
+      						<div class="float-md-left ">
+								${proAll[x_index].name}<br/>
+								<#list colAll as c>
+									<#if x.scolor==c.id>
+										颜色：${c.color}<br/>
+									</#if>
+								</#list>
+								<#list sizeAll as s>
+									<#if x.scolor==s.id>
+										大小：${s.size}<br/>
+									</#if>
+								</#list>
+								
+							</div>
+      					</td>
+      			        <td  >
+							<div style="width: 28px;height: 30px;"></div>
+      						￥<font id="${x.id}price">${proAll[x_index].price?number * proAll[x_index].discount?number}</font>
+      					</td>
+      			        <td >
+							<div style="width: 28px;height: 30px;"></div>
+      						<div >
+      							<input type="number" min="1"   id="${x.id}num" onmouseup="change('${x.id}')" onkeyup="change('${x.id}')"  class="form-control float-left m-0 p-0" id="${x.id}num" style="width: 60px;height: 30px; " placeholder="数量" value="${x.quantity}">
+      						</div>
+      					</td>
+      					<td class="d-none d-md-table-cell">
+							<div style="width: 28px;height: 30px;"></div>
+      						￥<font id="${x.id}goodsPrice">${proAll[x_index].price?number * proAll[x_index].discount?number * x.quantity?number}</font>
+      					</td>
+						<!-- class="d-none d-md-table-cell" -->
+      					<td class="d-none d-md-table-cell">
+      						<div style="width: 10px;height: 28x;"></div><br>
+							<div style="width: 28px;height: 20px;"><a href="#"  onclick="deletepro(${x.id})">删除</a></div>
+							<div size="" color=""><a href="#"  onclick="addpro(${x.id})">购物</a></div><br>
+      					</td>
+      			      </tr>
+      			    </#list>
+      			    </tbody>
+					
+      			</table>
+      		</div>
+			
+			
+			
+			<!-- //删除 -->
+			<script type="text/javascript">
+				 function change(id) {
+				        var total = $("#total").text();
+				        var goodsPrice = $("#"+id+"goodsPrice").text();
+				        var num=$("#"+id+"num").val();
+				        var price=$("#"+id+"price").text();
+				        total = parseFloat(total) - parseFloat(goodsPrice);
+				        var newGoodsPrice = (parseInt(num))*parseFloat(price);
+				        total = parseFloat(total)+newGoodsPrice;
+				        $("#"+id+"goodsPrice").text(newGoodsPrice);
+				        $("#total").text(total);
+				        $.ajax({
+				            type: "post",
+				            url: "${req.contextPath}/wishcart/addnum",
+				            data: {"num":num,"o_id":id},
+				            success: function(date){
+				            }
+				        });
+				    }
+				    function change1(id) {
+				        var num=$("#"+id+"num").val();
+				        var price=$("#"+id+"price").text();
+				        var newGoodsPrice = (parseInt(num))*parseFloat(price);
+				        $("#"+id+"goodsPrice").text(parseFloat(newGoodsPrice));
+				        $.ajax({
+				            type: "post",
+				            url: "${req.contextPath}/wishcart/addnum",
+				            data: {"num":num,"o_id":id},
+				            success: function(date){
+				            }
+				        });
+				    }
+				    function ckebox(id) {
+				        var goodsPrice = $("#"+id+"goodsPrice").text();
+				        var total = $("#total").text();
+				        total = parseFloat(total) - parseFloat(goodsPrice);
+				        $("#total").text(total);
+				        $("#"+id+"num").removeAttr("onmouseup");
+				        $("#"+id+"num").removeAttr("onkeyup");
+				        $("#"+id+"checkbox").removeAttr("onmouseup");
+				        $("#"+id+"num").attr({
+				            "onmouseup" : "change1("+id+")",
+				            "onkeyup" : "change1("+id+")",
+				        });
+				        $("#"+id+"checkbox").attr("onmouseup","ckebox1("+id+")");
+				    }
+				    function ckebox1(id) {
+				        var goodsPrice = $("#"+id+"goodsPrice").text();
+				        var total = $("#total").text();
+				        total = parseFloat(total) + parseFloat(goodsPrice);
+				        $("#total").text(total);
+				        $("#"+id+"num").removeAttr("onmouseup");
+				        $("#"+id+"num").removeAttr("onkeyup");
+				        $("#"+id+"checkbox").removeAttr("onmouseup");
+				        $("#"+id+"num").attr({
+				            "onmouseup" : "change("+id+")",
+				            "onkeyup" : "change("+id+")",
+				        });
+				        $("#"+id+"checkbox").attr("onmouseup","ckebox("+id+")");
+				    }
+					// 删除
+				 function deletepro(o_id) {
+				       var goodsPrice = $("#"+o_id+"goodsPrice").text();
+				       var total = $("#total").text();
+				       total = parseFloat(total) - parseFloat(goodsPrice);
+				       $("#"+o_id+"tr").remove();
+				       $("#total").text(total);
+				       $.ajax({
+				            type: "post",
+				            url: "${req.contextPath}/wishcart/dele",
+				            data: {"o_id":o_id},
+				            success: function(date){
+				            }
+				        });
+				    }
+					function addpro(o_id) {
+						   var num=$("#"+o_id+"num").val();
+						   var goodsPrice = $("#"+o_id+"goodsPrice").text();
+					       var total = $("#total").text();
+					       total = parseFloat(total) - parseFloat(goodsPrice);
+					       $("#"+o_id+"tr").remove();
+					       $("#total").text(total);
+					       $.ajax({
+					            type: "post",
+					            url: "${req.contextPath}/wishcart/addpro",
+					            data: {"o_id":o_id,"num":num},
+					            success: function(date){
+					            }
+					        });
+					   }
+			</script>
+      	</div>
+      </div>
+    </main>
+    <!-- main wrapper end -->
+<#include "./foot.html">
+
+</body>
+
+</html>

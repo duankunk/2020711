@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script src="${req.contextPath}/assets/layer/layer.js"></script> 
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<h3>添加大小</h3>
+				</div>
+			</div>
+			<hr >
+			<div class="row">
+				<div class="col-12 text-center" id="">
+					<label >大小</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					<input style="width: 100%;"placeholder="xxx" type="text" id="size"  value="" />
+				</div>
+			</div>
+				<hr >
+			<div class="row">
+				<div class="col-12 text-center">
+					<button style="width: 100%" onclick="addpro()">添加</button>
+				</div>
+			</div>
+				<hr >
+			<script type="text/javascript">
+			function addpro(){
+					
+					var size=$('#size').val();
+					
+					$.ajax({
+			            type: "post",
+			            url: "${req.contextPath}/addcolor",
+			            data: {"size":size},
+			            success: function(date){
+			                if(date=="200"){
+			                	window.parent.location.reload();
+			                	parent.layer.close(index);
+			                }else {
+			                    alert("请重试");
+			                }
+			            }
+			        });
+					
+			}
+			</script>
+		</div>
+	</body>
+</html>

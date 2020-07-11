@@ -1,0 +1,91 @@
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <title>地址</title>
+		<!-- All Vendor & plugins CSS include -->
+    <link href="${req.contextPath}/assets/css/vendor.css" rel="stylesheet">
+    <!-- Main Style CSS -->
+    <link href="${req.contextPath}/assets/css/style.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="${req.contextPath}/assets/layer/layer.js"></script> 
+	</head>
+	<body>
+		<div class="container col-12">
+			<div class="col-12">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th colspan="7"><font size="5"  class="mb-3 m-0 p-0">地址信息</font></th>
+					</tr>
+					<tr>
+						<th>姓名</th>
+						<th>电话</th>
+						<th>详细地址</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<#if useradd?? >
+						<#list useradd as x >
+						<tr>
+							<td>
+								${x.name}
+							</td>
+							<td>
+								${x.cellphone}
+							</td>
+							<td>
+								${x.province}:
+								${x.town}:
+								${x.area}<br>
+								${x.address}
+							</td>
+							<td>
+								<button onclick="deleteAddress( '${x.id}')">删除</button>
+							</td>
+						</tr>
+						</#list>
+					<#else>
+						<tr>
+							<td colspan="4" class="text-center">尚未有地址</td>
+						</tr>
+					</#if>
+					</tbody>
+					<tfoot>
+					<tr >
+						<td colspan="4"  class="text-center"><button type="button" id="addaddress" class="btn btn-outline-secondary">添加更多</button></td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	<script type="text/javascript">
+        $(function() {
+            $('#addaddress').on('click', function(){
+                layer.open({
+                    type: 2,
+                    title: '添加地址',
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area : ['500px' , '600px'],
+                    content: '${req.contextPath}/account/addaddress'
+                });
+            });
+        })
+        function deleteAddress(ad_id){
+            $.ajax({
+                type: "post",
+                url: "${req.contextPath}/account/deleteAddressDate",
+                data: {"ad_id":ad_id},
+                success: function (date) {
+                    if (date == "200") {
+                        window.location.reload();
+                    } else {
+                        layer.msg("删除失败");
+                    }
+                }
+            })
+        }
+	</script>
+	</body>
+</html>
